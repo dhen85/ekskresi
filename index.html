@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumatif IPA: Sistem Ekskresi Manusia - Kelas 8G</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .timer-bar { transition: width 1s linear; }
+        .option-btn { transition: all 0.2s ease; }
+        .option-btn.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .option-btn:hover:not(.selected) { background-color: #eff6ff; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
+        <div class="text-center mb-8">
+            <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800">Sumatif IPA Kelas 8G</h1>
+            <p class="text-gray-500 mt-2">Materi: Sistem Ekskresi pada Manusia</p>
+        </div>
+
+        <form id="login-form" class="space-y-5">
+            <div>
+                <label for="student-name" class="block text-sm font-medium text-gray-700 mb-1">Nama Siswa</label>
+                <select id="student-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                    <option value="" disabled selected>Pilih nama Anda...</option>
+                    <option value="KANDIDA LORD MINTO SESO">KANDIDA LORD MINTO SESO</option>
+                    <option value="MARIA KEISYANIA JANDOMARI">MARIA KEISYANIA JANDOMARI</option>
+                    <option value="MARIA NAVIA CILIA JOMBU">MARIA NAVIA CILIA JOMBU</option>
+                    <option value="MARIA OLIVA METE">MARIA OLIVA METE</option>
+                    <option value="MATHEUS MARI WANGGE">MATHEUS MARI WANGGE</option>
+                    <option value="MATHILDA MBASI">MATHILDA MBASI</option>
+                    <option value="MATHILDA SERENA GAE">MATHILDA SERENA GAE</option>
+                    <option value="MAXIMIANUS CONRADUS LIWU">MAXIMIANUS CONRADUS LIWU</option>
+                    <option value="MONICA ALEKSIA LONDA">MONICA ALEKSIA LONDA</option>
+                    <option value="NATALIA AZILDA ENEM">NATALIA AZILDA ENEM</option>
+                    <option value="PRECILYA OLIVYA RERE">PRECILYA OLIVYA RERE</option>
+                    <option value="PRISYLA CLARITA DENO BARA">PRISYLA CLARITA DENO BARA</option>
+                    <option value="SIRILUS TRISTAN THEODORUS">SIRILUS TRISTAN THEODORUS</option>
+                    <option value="SISILIA TIWA NDORHU">SISILIA TIWA NDORHU</option>
+                    <option value="STEVANUS KIWU KOLI">STEVANUS KIWU KOLI</option>
+                    <option value="THERESIA DEVINA RAY REKO">THERESIA DEVINA RAY REKO</option>
+                    <option value="TIMOTEUS ABUT">TIMOTEUS ABUT</option>
+                    <option value="VIRGINIA LOISA RUA">VIRGINIA LOISA RUA</option>
+                    <option value="WILHELMINA ALETHA SAUDALE">WILHELMINA ALETHA SAUDALE</option>
+                    <option value="YOHANES NGONGO MEO">YOHANES NGONGO MEO</option>
+                    <option value="YOHANES OBIN MBETE WANGGE">YOHANES OBIN MBETE WANGGE</option>
+                    <option value="YOHANES OVAN LEBU">YOHANES OVAN LEBU</option>
+                    <option value="YOHANES SANDI RAFAEL">YOHANES SANDI RAFAEL</option>
+                    <option value="YOSEF CRISTIAN RENDI MBOA">YOSEF CRISTIAN RENDI MBOA</option>
+                    <option value="YOSEFINA ANU">YOSEFINA ANU</option>
+                    <option value="YOSEP KRISTIANO RESI">YOSEP KRISTIANO RESI</option>
+                    <option value="YOSEPH NATHANAEL">YOSEPH NATHANAEL</option>
+                    <option value="YULIANA DALA">YULIANA DALA</option>
+                </select>
+            </div>
+            <div>
+                <label for="token" class="block text-sm font-medium text-gray-700 mb-1">Token Ujian</label>
+                <input type="text" id="token" required placeholder="Masukkan token..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none uppercase">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200">
+                Mulai Ujian
+            </button>
+            <p id="login-error" class="text-red-500 text-sm text-center hidden">Token salah! Silakan coba lagi.</p>
+        </form>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="quiz-screen" class="bg-white rounded-2xl shadow-xl w-full max-w-3xl p-6 md:p-8 hidden">
+        <div class="flex justify-between items-center mb-6">
+            <div class="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                Soal <span id="current-q-num">1</span> / <span id="total-q-num">25</span>
+            </div>
+            <div class="flex items-center text-orange-600 font-bold bg-orange-50 px-3 py-1 rounded-full">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span id="timer-text">01:30</span>
+            </div>
+        </div>
+
+        <!-- Timer Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+            <div id="timer-bar" class="bg-orange-500 h-2 rounded-full timer-bar" style="width: 100%"></div>
+        </div>
+
+        <div class="mb-8">
+            <h2 id="question-text" class="text-lg md:text-xl font-semibold text-gray-800 leading-relaxed">
+                Loading question...
+            </h2>
+        </div>
+
+        <div id="options-container" class="space-y-3 mb-8">
+            <!-- Options will be injected here -->
+        </div>
+
+        <div class="flex justify-end">
+            <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
+                Selanjutnya
+            </button>
+        </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 hidden text-center">
+        <div class="bg-green-100 text-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Ujian Selesai!</h2>
+        <p class="text-gray-600 mb-6">Terima kasih <span id="result-name" class="font-semibold"></span> telah menyelesaikan Sumatif IPA.</p>
+        
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 mb-6">
+            <p class="text-sm text-blue-600 font-semibold mb-1">NILAI ANDA</p>
+            <p id="final-score" class="text-5xl font-bold text-blue-700">0</p>
+        </div>
+
+        <div id="submit-status" class="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            Sedang menyimpan data ke Spreadsheet...
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOAL ---
+        const questions = [
+            { q: "Proses pengeluaran zat-zat sisa metabolisme yang sudah tidak berguna lagi bagi tubuh manusia disebut ....", options: ["Defekasi", "Sekresi", "Ekskresi", "Respirasi"], answer: 2 },
+            { q: "Berikut ini yang merupakan contoh dari proses sekresi dalam tubuh manusia adalah ....", options: ["Pengeluaran feses melalui anus", "Pengeluaran enzim dan hormon", "Pengeluaran keringat saat kepanasan", "Pengeluaran uap air saat bernapas"], answer: 1 },
+            { q: "Perhatikan peristiwa-peristiwa berikut:\n1) Kacamata berembun saat bernapas\n2) Buang air besar di pagi hari\n3) Sering buang air kecil saat cuaca dingin\n4) Berkeringat setelah berolahraga\nPeristiwa yang menunjukkan aktivitas sistem ekskresi adalah nomor ....", options: ["1, 2, dan 3", "1, 2, dan 4", "1, 3, dan 4", "2, 3, dan 4"], answer: 2 },
+            { q: "Salah satu fungsi utama sistem ekskresi bagi tubuh manusia adalah menjaga keseimbangan cairan tubuh. Kondisi keseimbangan lingkungan internal tubuh ini dikenal dengan istilah ....", options: ["Metabolisme", "Homeostasis", "Osmosis", "Difusi"], answer: 1 },
+            { q: "Empat organ utama yang berperan sebagai alat ekskresi pada manusia adalah ....", options: ["Ginjal, kulit, hati, dan paru-paru", "Ginjal, jantung, hati, dan kulit", "Paru-paru, lambung, ginjal, dan kulit", "Hati, usus besar, ginjal, dan paru-paru"], answer: 0 },
+            { q: "Letak ginjal kanan manusia sedikit lebih rendah dibandingkan dengan ginjal kiri. Hal ini disebabkan karena ....", options: ["Ukuran ginjal kanan lebih besar daripada ginjal kiri", "Ginjal kanan harus berbagi tempat dengan organ hati di atasnya", "Ginjal kiri terdesak oleh organ lambung dan limpa", "Saluran ureter kanan lebih pendek daripada ureter kiri"], answer: 1 },
+            { q: "Unit fungsional dan struktural terkecil penyusun ginjal yang berjumlah sekitar 1 juta pada setiap ginjal disebut ....", options: ["Pelvis", "Ureter", "Nefron", "Korteks"], answer: 2 },
+            { q: "Bagian pada struktur ginjal yang berfungsi untuk menampung urine sementara sebelum dialirkan menuju ureter adalah ....", options: ["Kapsul fibrous", "Korteks renalis", "Medula renalis", "Pelvis renalis"], answer: 3 },
+            { q: "Perhatikan tahapan pembentukan urine berikut: 1) Filtrasi 2) Augmentasi 3) Reabsorpsi. Urutan proses pembentukan urine di dalam ginjal yang benar adalah ....", options: ["1 – 2 – 3", "1 – 3 – 2", "2 – 1 – 3", "3 – 1 – 2"], answer: 1 },
+            { q: "Proses penyaringan darah yang terjadi di glomerulus akan menghasilkan zat berupa ....", options: ["Urine primer", "Urine sekunder", "Urine sesungguhnya", "Cairan empedu"], answer: 0 },
+            { q: "Zat-zat yang masih berguna bagi tubuh seperti glukosa, asam amino, dan ion-ion mineral diserap kembali oleh tubuh pada tahap reabsorpsi. Proses ini terjadi di bagian ....", options: ["Glomerulus", "Tubulus kontortus proksimal", "Tubulus kontortus distal", "Tubulus kolektivus"], answer: 1 },
+            { q: "Urutan saluran pengeluaran urine (proses mikturasi) dari tempat pembentukannya hingga keluar dari tubuh yang benar adalah ....", options: ["Ginjal → Uretra → Kantung kemih → Ureter", "Ginjal → Ureter → Kantung kemih → Uretra", "Ginjal → Kantung kemih → Ureter → Uretra", "Ginjal → Ureter → Uretra → Kantung kemih"], answer: 1 },
+            { q: "Saat cuaca dingin, seseorang cenderung lebih sering buang air kecil dibandingkan saat cuaca panas. Hal ini terjadi karena saat cuaca dingin ....", options: ["Pori-pori kulit terbuka lebar sehingga penguapan berkurang", "Aktivitas kelenjar keringat meningkat drastis", "Pori-pori kulit menutup dan pembuluh darah menyempit sehingga air dibuang melalui ginjal", "Hormon antidiuretik (ADH) diproduksi dalam jumlah yang sangat tinggi"], answer: 2 },
+            { q: "Struktur kulit manusia tersusun atas tiga lapisan utama dari luar ke dalam secara berurutan, yaitu ....", options: ["Dermis – Epidermis – Hipodermis", "Epidermis – Dermis – Hipodermis", "Hipodermis – Dermis – Epidermis", "Epidermis – Hipodermis – Dermis"], answer: 1 },
+            { q: "Pada lapisan epidermis kulit terdapat beberapa sub-lapisan. Lapisan yang berfungsi membentuk sel-sel kulit baru adalah ....", options: ["Stratum korneum", "Stratum lusidum", "Stratum granulosum", "Stratum germinativum"], answer: 3 },
+            { q: "Kelenjar keringat, kelenjar minyak, akar rambut, serta jaringan saraf pada kulit terletak pada lapisan ....", options: ["Epidermis", "Dermis", "Hipodermis", "Stratum korneum"], answer: 1 },
+            { q: "Selain berfungsi sebagai alat ekskresi yang mengeluarkan keringat, kulit juga memiliki fungsi lain, kecuali ....", options: ["Melindungi tubuh dari kerusakan fisik dan kuman", "Membantu pembentukan vitamin D dengan bantuan sinar UV", "Mengatur suhu tubuh", "Menetralkan racun yang masuk bersama makanan"], answer: 3 },
+            { q: "Pusat pengatur suhu tubuh di otak yang mengirimkan sinyal ke kelenjar keringat saat suhu tubuh meningkat adalah ....", options: ["Serebelum", "Medula oblongata", "Hipotalamus", "Serebrum"], answer: 2 },
+            { q: "Keringat yang dikeluarkan melalui pori-pori kulit mengandung zat-zat sisa metabolisme berupa ....", options: ["Air, garam, dan urea", "Air, glukosa, dan asam amino", "Air, karbon dioksida, dan bilirubin", "Air, amonia, dan protein"], answer: 0 },
+            { q: "Hati merupakan organ bagian dalam manusia yang berukuran paling besar. Di dalam sistem ekskresi, hati berperan untuk mengekskresikan ....", options: ["Urine", "Keringat", "Cairan empedu", "Uap air"], answer: 2 },
+            { q: "Zat warna empedu yang berasal dari perombakan hemin pada hemoglobin sel darah merah yang sudah tua adalah ....", options: ["Globin dan zat besi", "Bilirubin dan biliverdin", "Urea dan kreatinin", "Lesitin dan kolesterol"], answer: 1 },
+            { q: "Berikut ini merupakan fungsi dari cairan empedu bagi tubuh manusia, kecuali ....", options: ["Mencerna dan mengemulsikan lemak dalam usus", "Mengaktifkan enzim lipase", "Mengubah zat yang tidak larut menjadi larut dalam air", "Menyaring darah untuk menghasilkan urine primer"], answer: 3 },
+            { q: "Sebagai alat ekskresi, paru-paru berfungsi mengeluarkan zat sisa metabolisme berupa ....", options: ["Oksigen (O2) dan uap air (H2O)", "Karbon dioksida (CO2) dan uap air (H2O)", "Karbon monoksida (CO) dan urea", "Nitrogen (N2) dan uap air (H2O)"], answer: 1 },
+            { q: "Pertukaran gas untuk membuang karbon dioksida (CO2) dan uap air (H2O) dari darah ke paru-paru terjadi secara difusi di bagian ....", options: ["Trakea", "Bronkus", "Bronkiolus", "Alveolus"], answer: 3 },
+            { q: "Gangguan pada sistem ekskresi yang ditandai dengan terjadinya pengendapan kristal kalsium fosfat di dalam rongga ginjal atau saluran kemih disebut ....", options: ["Nefritis", "Albuminuria", "Batu ginjal", "Diabetes insipidus"], answer: 2 }
+        ];
+
+        // --- STATE VARIABLES ---
+        let currentStudent = "";
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = new Array(questions.length).fill(null); // null if empty
+        let currentSelection = null;
+        
+        let timeLeft = 90; // 90 seconds per question
+        let timerInterval;
+
+        const spreadsheetID = "1sgGqZks9FSZ8s_vbG8BR6olEICKAnhBn5Ixo04v9rxw";
+
+        // --- DOM ELEMENTS ---
+        const loginScreen = document.getElementById('login-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        
+        const qNumEl = document.getElementById('current-q-num');
+        const tNumEl = document.getElementById('total-q-num');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const timerText = document.getElementById('timer-text');
+        const timerBar = document.getElementById('timer-bar');
+
+        tNumEl.innerText = questions.length;
+
+        // --- EVENT LISTENERS ---
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const token = document.getElementById('token').value.trim().toUpperCase();
+            const name = document.getElementById('student-name').value;
+
+            if (token === 'IPA' && name) {
+                currentStudent = name;
+                loginScreen.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
+                loadQuestion();
+            } else {
+                loginError.classList.remove('hidden');
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            saveAnswerAndNext();
+        });
+
+        // --- FUNCTIONS ---
+        function loadQuestion() {
+            clearInterval(timerInterval);
+            currentSelection = null;
+            timeLeft = 90;
+            updateTimerUI();
+            
+            const q = questions[currentQuestionIndex];
+            qNumEl.innerText = currentQuestionIndex + 1;
+            
+            // Format question (handle newlines)
+            questionText.innerHTML = q.q.replace(/\n/g, '<br/>');
+            
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn w-full text-left px-5 py-4 border border-gray-200 rounded-xl hover:border-blue-400 focus:outline-none';
+                btn.innerHTML = `<span class="font-bold mr-2">${String.fromCharCode(65 + index)}.</span> ${opt}`;
+                btn.onclick = () => selectOption(btn, index);
+                optionsContainer.appendChild(btn);
+            });
+
+            if(currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerText = "Selesai & Kumpulkan";
+            }
+
+            // Start Timer
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerUI();
+                if (timeLeft <= 0) {
+                    // Auto-skip
+                    saveAnswerAndNext();
+                }
+            }, 1000);
+        }
+
+        function selectOption(btn, index) {
+            // Remove selected class from all
+            Array.from(optionsContainer.children).forEach(child => child.classList.remove('selected'));
+            // Add to current
+            btn.classList.add('selected');
+            currentSelection = index;
+        }
+
+        function updateTimerUI() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerText.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const percentage = (timeLeft / 90) * 100;
+            timerBar.style.width = `${percentage}%`;
+
+            if(timeLeft < 15) {
+                timerBar.classList.remove('bg-orange-500');
+                timerBar.classList.add('bg-red-600');
+                timerText.classList.remove('text-orange-600');
+                timerText.classList.add('text-red-600');
+            } else {
+                timerBar.classList.add('bg-orange-500');
+                timerBar.classList.remove('bg-red-600');
+                timerText.classList.add('text-orange-600');
+                timerText.classList.remove('text-red-600');
+            }
+        }
+
+        function saveAnswerAndNext() {
+            clearInterval(timerInterval);
+            
+            // Save answer (null if not answered)
+            userAnswers[currentQuestionIndex] = currentSelection;
+
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            // Calculate Score
+            let correct = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === questions[idx].answer) {
+                    correct++;
+                }
+            });
+            
+            // Score scaled to 100
+            score = Math.round((correct / questions.length) * 100);
+            
+            document.getElementById('result-name').innerText = currentStudent;
+            document.getElementById('final-score').innerText = score;
+
+            submitDataToSpreadsheet(currentStudent, score, userAnswers);
+        }
+
+        function submitDataToSpreadsheet(name, finalScore, answers) {
+            const statusEl = document.getElementById('submit-status');
+            statusEl.innerHTML = `<span class="text-blue-600">Sedang mengirim data ke Spreadsheet...</span>`;
+            
+            // PENTING: Ganti nilai variabel ini dengan URL Web App Anda setelah melakukan deploy di Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxz0X37nt35qLwL6D5_XbkgL1-C0zFLs8CRK6VodSlrfZHiPAF4MGBzUf-Ez0WyN_PW/exec';
+            
+            if (scriptURL === 'https://script.google.com/macros/s/AKfycbxz0X37nt35qLwL6D5_XbkgL1-C0zFLs8CRK6VodSlrfZHiPAF4MGBzUf-Ez0WyN_PW/exec') {
+                statusEl.innerHTML = `
+                    <div class="text-orange-600 font-semibold mb-2">⚠️ Pengiriman Ditunda</div>
+                    <div class="text-xs text-gray-600 text-left bg-white p-3 border rounded">
+                        Anda belum memasukkan URL Google Apps Script pada file HTML. Pastikan Anda telah membuat Web App di Apps Script dan menaruh URL-nya di variabel <code>scriptURL</code>.
+                    </div>
+                `;
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('Nama', name);
+            formData.append('Nilai', finalScore);
+            formData.append('Jawaban', JSON.stringify(answers));
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+              .then(response => {
+                  statusEl.innerHTML = '<span class="text-green-600 font-semibold">✅ Data berhasil disimpan ke Spreadsheet!</span>';
+              })
+              .catch(error => {
+                  statusEl.innerHTML = '<span class="text-red-600 font-semibold">❌ Gagal mengirim data. Pastikan koneksi internet aktif.</span>';
+              });
+        }
+    </script>
+</body>
+</html>
