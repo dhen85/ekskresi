@@ -195,11 +195,22 @@
             const name = document.getElementById('student-name').value;
 
             if (token === 'IPA' && name) {
+                // Pengecekan apakah siswa sudah pernah mengerjakan
+                if (localStorage.getItem('ujian_ekskresi_8g_' + name)) {
+                    loginError.innerText = "Maaf, Anda sudah mengerjakan ujian ini dan tidak dapat mengulang.";
+                    loginError.classList.remove('hidden');
+                    return; // Hentikan proses masuk
+                }
+
+                // Tandai siswa ini sudah mulai mengerjakan ujian
+                localStorage.setItem('ujian_ekskresi_8g_' + name, 'true');
+
                 currentStudent = name;
                 loginScreen.classList.add('hidden');
                 quizScreen.classList.remove('hidden');
                 loadQuestion();
             } else {
+                loginError.innerText = "Token salah! Silakan coba lagi.";
                 loginError.classList.remove('hidden');
             }
         });
